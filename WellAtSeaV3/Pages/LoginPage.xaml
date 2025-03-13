@@ -5,7 +5,19 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     BackgroundColor="White"
     NavigationPage.HasNavigationBar="False">
-
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="BorderlessEntry" TargetType="Entry">
+                <Setter Property="BackgroundColor" Value="#F1F1F1" />
+                <Setter Property="TextColor" Value="#484848" />
+                <Setter Property="PlaceholderColor" Value="#CCCACA" />
+                <Setter Property="FontFamily" Value="PoppinsRegular" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="HeightRequest" Value="50" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <Grid
         Padding="20"
         RowDefinitions="Auto,300,*"
@@ -46,10 +58,12 @@
                         WidthRequest="24" />
                     <Entry
                         Grid.Column="1"
+                        BackgroundColor="#F1f1f1"
                         FontFamily="PoppinsRegular"
                         FontSize="14"
                         Placeholder="Username"
                         PlaceholderColor="#cccaca"
+                        Style="{StaticResource BorderlessEntry}"
                         TextColor="#484848"
                         VerticalOptions="Center" />
                 </Grid>
@@ -72,11 +86,13 @@
                         WidthRequest="24" />
                     <Entry
                         Grid.Column="1"
+                        BackgroundColor="#F1f1f1"
                         FontFamily="PoppinsRegular"
                         FontSize="14"
                         IsPassword="True"
                         Placeholder="Password"
                         PlaceholderColor="#cccaca"
+                        Style="{StaticResource BorderlessEntry}"
                         TextColor="#484848"
                         VerticalOptions="Center" />
                     <ImageButton

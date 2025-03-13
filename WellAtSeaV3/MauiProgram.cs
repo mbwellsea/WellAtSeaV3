@@ -1,5 +1,11 @@
 using Microsoft.Extensions.Logging;
 
+#if ANDROID
+using Microsoft.Maui.Controls.Compatibility.Platform.Android;
+#endif
+
+using Microsoft.Maui.Handlers;
+
 namespace WellAtSeaV3;
 
 public static class MauiProgram
@@ -17,8 +23,16 @@ public static class MauiProgram
 				fonts.AddFont("Poppins-Bold.ttf", "PoppinsBold");
 			});
 
+        // Remove Entry Borders on Android
+        EntryHandler.Mapper.AppendToMapping("Borderless", (handler, view) =>
+        {
+#if ANDROID
+			handler.PlatformView.SetBackgroundColor(Color.FromArgb("#F1F1F1").ToAndroid());
+			handler.PlatformView.SetHintTextColor(Android.Content.Res.ColorStateList.ValueOf(Android.Graphics.Color.Gray));
+#endif
+        });
 #if DEBUG
-		builder.Logging.AddDebug();
+        builder.Logging.AddDebug();
 #endif
 
 		return builder.Build();
